@@ -8,8 +8,6 @@ import { Base64ToGallery } from "@ionic-native/base64-to-gallery";
 })
 export class CameraPage {
   base64Image: string;
-  res: any = '';
-  err: any = '';
 
 
   private options: CameraOptions;
