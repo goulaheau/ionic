@@ -33,7 +33,7 @@ export class CameraPage {
   }
 
   saveInGallery() {
-    this.base64ToGallery.base64ToGallery(this.base64Image, { prefix: '_img' }).then(
+    this.base64ToGallery.base64ToGallery(this.base64Image.replace('data:image/jpeg;base64,', ''), { prefix: '_img' }).then(
       res => {
         console.log('Saved image to gallery ', res);
         this.res = res;
