@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Camera } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
   selector: 'page-camera',
@@ -8,15 +8,19 @@ import { Camera } from '@ionic-native/camera';
 export class CameraPage {
   base64Image: string;
 
-  constructor(private camera: Camera) { }
+  private options: CameraOptions;
 
-  takePicture() {
-    this.camera.getPicture({
+  constructor(private camera: Camera) {
+    this.options = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
-    }).then((imageData) => {
+    };
+  }
+
+  takePicture() {
+    this.camera.getPicture(this.options).then((imageData) => {
       this.base64Image = "data:image/jpeg;base64," + imageData;
     }, (err) => {
       console.log(err);
