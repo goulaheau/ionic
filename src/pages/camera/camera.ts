@@ -9,7 +9,7 @@ import { SpinnerDialog } from "@ionic-native/spinner-dialog";
 })
 export class CameraPage {
   base64Image: string;
-  message : string;
+  message: string;
 
   private options: CameraOptions;
 
@@ -33,10 +33,15 @@ export class CameraPage {
 
   saveInGallery() {
     this.spinnerDialog.show();
-    this.base64ToGallery.base64ToGallery(this.base64Image.replace('data:image/jpeg;base64,', ''), { prefix: '_img' }).then(
-      res => this.message = `Enregistré à ${res}`,
-      err => this.message = `Erreur : ${err}`
+    this.base64ToGallery.base64ToGallery(this.base64Image.replace('data:image/jpeg;base64,', ''), {prefix: '_img'}).then(
+      res => {
+        this.message = `Enregistré à ${res}`;
+        this.spinnerDialog.hide();
+      },
+      err => {
+        this.message = `Erreur : ${err}`;
+        this.spinnerDialog.hide();
+      }
     );
-    this.spinnerDialog.hide();
   }
 }
