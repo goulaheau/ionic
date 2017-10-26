@@ -8,6 +8,6 @@
 </ion-header>
 
 <ion-content>
-  <button ion-button (click)="takePicture()">C'est l'heure du selfie !</button>
+  <button ion-button (click)="takePicture()"><ion-icon name="musical-note"></ion-icon> Let me take a selfie ! <ion-icon name="musical-note"></ion-icon></button>
   <img *ngIf="base64Image" [src]="base64Image"/>
 </ion-content>
