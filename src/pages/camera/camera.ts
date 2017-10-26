@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Base64ToGallery } from "@ionic-native/base64-to-gallery";
+import { SpinnerDialog } from "@ionic-native/spinner-dialog";
 
 @Component({
   selector: 'page-camera',
@@ -13,7 +14,8 @@ export class CameraPage {
   private options: CameraOptions;
 
   constructor(private camera: Camera,
-              private base64ToGallery: Base64ToGallery) {
+              private base64ToGallery: Base64ToGallery,
+              private spinnerDialog: SpinnerDialog) {
     this.options = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -23,22 +25,18 @@ export class CameraPage {
   }
 
   takePicture() {
-    this.camera.getPicture(this.options).then((imageData) => {
-      this.base64Image = "data:image/jpeg;base64," + imageData;
-    }, (err) => {
-      console.log(err);
-    });
+    this.camera.getPicture(this.options).then(
+      res => this.base64Image = "data:image/jpeg;base64," + res,
+      err => this.message = `Erreur : ${err}`
+    );
   }
 
   saveInGallery() {
-    this.message = 'En cours de sauvegarde ...';
+    this.spinnerDialog.show();
     this.base64ToGallery.base64ToGallery(this.base64Image.replace('data:image/jpeg;base64,', ''), { prefix: '_img' }).then(
-      res => {
-        this.message = `Enregistré à ${res}`;
-      },
-      err => {
-        this.message = `Erreur : ${err}`;
-      }
+      res => this.message = `Enregistré à ${res}`,
+      err => this.message = `Erreur : ${err}`
     );
+    this.spinnerDialog.hide();
   }
 }
