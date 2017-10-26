@@ -13,6 +13,8 @@
     Let me take a selfie !
     <ion-icon name="musical-note" margin-left></ion-icon>
   </button>
-  <button *ngIf="base64Image" ion-button (click)="saveInGallery()">Sauvegarde ce chef d'oeuvre !</button>
+  <button *ngIf="base64Image" ion-button (click)="saveInGallery()">Sauvegarde ce chef d'oeuvre !</button> <br>
+  res : {{res}} <br>
+  err : {{err}} <br>
   <img *ngIf="base64Image" [src]="base64Image"/>
 </ion-content>
