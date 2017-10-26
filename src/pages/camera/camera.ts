@@ -1,18 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Component } from '@angular/core';
+import { Camera } from '@ionic-native/camera';
 
 @Component({
   selector: 'page-camera',
   templateUrl: 'camera.html'
 })
-export class CameraPage implements OnInit {
+export class CameraPage {
   base64Image: string;
 
   constructor(private camera: Camera) { }
-
-  ngOnInit() {
-
-  }
 
   takePicture() {
     this.camera.getPicture({
