@@ -8,7 +8,7 @@ import { Base64ToGallery } from "@ionic-native/base64-to-gallery";
 })
 export class CameraPage {
   base64Image: string;
-
+  message : string;
 
   private options: CameraOptions;
 
@@ -31,14 +31,13 @@ export class CameraPage {
   }
 
   saveInGallery() {
+    this.message = 'En cours de sauvegarde ...';
     this.base64ToGallery.base64ToGallery(this.base64Image.replace('data:image/jpeg;base64,', ''), { prefix: '_img' }).then(
       res => {
-        console.log('Saved image to gallery ', res);
-        this.res = res;
+        this.message = `Enregistré à ${res}`;
       },
       err => {
-        console.log('Error saving image to gallery ', err);
-        this.err = err;
+        this.message = `Erreur : ${err}`;
       }
     );
   }
