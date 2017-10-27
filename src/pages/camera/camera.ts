@@ -26,7 +26,7 @@ export class CameraPage {
 
   takePicture() {
     this.camera.getPicture(this.options).then(
-      res => this.base64Image = "data:image/jpeg;base64," + res,
+      res => this.base64Image = `data:image/jpeg;base64,${res}`,
       err => this.message = `Erreur : ${err}`
     );
   }
