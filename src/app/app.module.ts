@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from "@ionic-native/camera";
 import { Base64ToGallery } from "@ionic-native/base64-to-gallery";
 import { SpinnerDialog } from "@ionic-native/spinner-dialog";
+import { VideoPageModule } from "../pages/video/video.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SpinnerDialog } from "@ionic-native/spinner-dialog";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    VideoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

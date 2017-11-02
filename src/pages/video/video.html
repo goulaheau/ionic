@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Video</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button (click)="takeVideo()">
+    <ion-icon name="musical-note" margin-right></ion-icon>
+    Let me take a video !
+    <ion-icon name="musical-note" margin-left></ion-icon>
+  </button>
+
+  <video *ngIf="path" src="{{path}}" controls="controls" autoplay></video>
+
+  <!--<button *ngIf="base64Image" ion-button (click)="saveInGallery()">Sauvegarder ce chef d'oeuvre</button> <br>-->
+  <!--<p *ngIf="message">{{message}}</p>-->
+  <!--<img *ngIf="base64Image" [src]="base64Image"/>-->
+</ion-content>
