@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { VideoPage } from './video';
 import { MediaCapture } from "@ionic-native/media-capture";
+import { LocalNotifications } from "@ionic-native/local-notifications";
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { MediaCapture } from "@ionic-native/media-capture";
     IonicPageModule.forChild(VideoPage),
   ],
   providers   : [
-    MediaCapture
+    MediaCapture,
+    LocalNotifications
   ]
 })
 export class VideoPageModule {}

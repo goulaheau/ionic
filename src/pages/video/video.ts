@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 /**
@@ -22,6 +23,7 @@ export class VideoPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              private localNotifications: LocalNotifications,
               private mediaCapture: MediaCapture) {
     this.options = {};
   }
@@ -31,7 +33,7 @@ export class VideoPage {
         .captureVideo(this.options)
         .then(
           (data: MediaFile[]) => this.captureSuccess(data),
-          (err: CaptureError) => this.captureError(err)
+          (err: CaptureError) => this.captureError()
         );
   }
 
@@ -41,11 +43,15 @@ export class VideoPage {
       path = mediaFiles[i].fullPath;
     }
     this.path = path;
-    console.log(this.path);
+
+    this.localNotifications.schedule({
+      text: 'Vidéo enregistrée'
+    });
   };
 
-  private captureError(error) {
-    // navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
-    console.log(error);
+  private captureError() {
+    this.localNotifications.schedule({
+      text: 'Une erreur s\'est produite'
+    });
   };
 }
