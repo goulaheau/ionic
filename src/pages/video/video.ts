@@ -25,7 +25,7 @@ export class VideoPage {
               public navParams: NavParams,
               private localNotifications: LocalNotifications,
               private mediaCapture: MediaCapture) {
-    this.options = {};
+    this.options = {limit: 1};
   }
 
   takeVideo() {
@@ -38,11 +38,7 @@ export class VideoPage {
   }
 
   private captureSuccess(mediaFiles) {
-    let i, path, len;
-    for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-      path = mediaFiles[i].fullPath;
-    }
-    this.path = path;
+    this.path = mediaFiles[0].fullPath;
 
     this.localNotifications.schedule({
       text: 'Vidéo enregistrée'
